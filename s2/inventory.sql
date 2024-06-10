@@ -8,17 +8,17 @@ CREATE TABLE products (
     price NUMERIC(10, 2) NOT NULL
 );
 
+CREATE TABLE warehouses (
+    warehouse_id SERIAL PRIMARY KEY,
+    warehouse_name VARCHAR(100) NOT NULL,
+    location VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE stock (
     product_id INT REFERENCES products(product_id),
     warehouse_id INT REFERENCES warehouses(warehouse_id),
     quantity INT NOT NULL,
     PRIMARY KEY (product_id, warehouse_id)
-);
-
-CREATE TABLE warehouses (
-    warehouse_id SERIAL PRIMARY KEY,
-    warehouse_name VARCHAR(100) NOT NULL,
-    location VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE suppliers (
@@ -33,7 +33,7 @@ CREATE TABLE inventory_transactions (
     transaction_id SERIAL PRIMARY KEY,
     product_id INT REFERENCES products(product_id),
     warehouse_id INT REFERENCES warehouses(warehouse_id),
-    transaction_type VARCHAR(20) NOT NULL, -- e.g., 'IN', 'OUT'
+    transaction_type VARCHAR(20) NOT NULL, 
     transaction_date DATE NOT NULL,
     quantity INT NOT NULL
 );
