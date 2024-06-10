@@ -1,6 +1,17 @@
 CREATE DATABASE IF NOT EXISTS hr;
-USE hr_management; -- People table
-CREATE TABLE emplyees (
+USE hr_management; 
+
+CREATE TABLE units (
+    unit_id SERIAL PRIMARY KEY,
+    unit_name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY,
+    role_name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE employees (
     employee_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -9,19 +20,7 @@ CREATE TABLE emplyees (
     hire_date DATE NOT NULL
 );
 
--- Units table
-CREATE TABLE units (
-    unit_id SERIAL PRIMARY KEY,
-    unit_name VARCHAR(50) NOT NULL
-);
 
--- Roles table
-CREATE TABLE roles (
-    role_id SERIAL PRIMARY KEY,
-    role_name VARCHAR(50) NOT NULL
-);
-
--- Salaries table
 CREATE TABLE salaries (
     employee_id INT REFERENCES employees(employee_id),
     salary NUMERIC(10, 2) NOT NULL,
